@@ -1,9 +1,7 @@
-function App() {
-  return (
-    <div>
+import Layout from './components/layout/Layout';
 
-    </div>
-  );
+function App() {
+  return <Layout/>;
 }
 
 export default App;
