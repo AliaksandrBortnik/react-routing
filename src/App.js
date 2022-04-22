@@ -1,5 +1,5 @@
 import Welcome from './pages/Welcome';
-import {Route} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 import Products from './pages/Products';
 import Header from './components/Header';
 import Product from './pages/Product';
@@ -9,15 +9,23 @@ function App() {
     <div>
       <Header/>
       <main>
-        <Route path='/welcome'>
-          <Welcome/>
-        </Route>
-        <Route path='/products'>
-          <Products/>
-        </Route>
-        <Route path='/product/:productId'>
-          <Product/>
-        </Route>
+        <Switch>
+          <Route path='/' exact>
+            <Redirect to={Welcome}/>
+          </Route>
+          <Route path='/welcome'>
+            <Welcome/>
+          </Route>
+          <Route path='/products' exact>
+            <Products/>
+          </Route>
+          <Route path='/products/:productId'>
+            <Product/>
+          </Route>
+          <Route path='*'>
+            <>Fallback</>
+          </Route>
+        </Switch>
       </main>
     </div>
   );
