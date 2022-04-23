@@ -1,13 +1,13 @@
 import QuoteForm from '../components/quotes/QuoteForm';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const AddQuote = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const addQuoteHandler = ({author, text}) => {
     // TODO: add a new quote to store
     console.log(author, text);
-    history.push('/quotes');
+    navigate('/quotes');
   };
 
   return (
