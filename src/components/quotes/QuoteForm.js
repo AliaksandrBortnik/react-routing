@@ -1,6 +1,5 @@
 import {useRef, useState} from 'react';
 
-import Card from '../UI/Card';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import classes from './QuoteForm.module.css';
 import {Prompt} from 'react-router-dom';

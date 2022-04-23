@@ -3,7 +3,7 @@ import {Fragment} from 'react';
 import QuoteItem from './QuoteItem';
 import NoQuotesFound from './NoQuotesFound';
 import classes from './QuoteList.module.css'
-import {useHistory, useLocation} from 'react-router-dom';
+import {useHistory, useLocation, useRouteMatch} from 'react-router-dom';
 
 const sortQuotes = (quotes, isAsc) => {
   if (isAsc) {
@@ -16,13 +16,18 @@ const sortQuotes = (quotes, isAsc) => {
 const QuoteList = (props) => {
   const location = useLocation();
   const history = useHistory();
+  const match = useRouteMatch();
 
   const queryParams = new URLSearchParams(location.search);
   const isAscSort = queryParams.get('sort') === 'asc';
   const sortedQuotes = sortQuotes([...props.quotes], isAscSort);
 
   const changeSortOrderHandler = () => {
-    history.push('/quotes?sort=' + (isAscSort ? 'desc' : 'asc'));
+    history.push(`${match.path}?sort=` + (isAscSort ? 'desc' : 'asc'));
+    // history.push({
+    //   pathname: match.path, // location.pathname
+    //   search: `?sort=${(isAscSort ? 'desc' : 'asc')}`
+    // });
     sortQuotes(props.quotes, isAscSort);
   };
 
